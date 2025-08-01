@@ -1,7 +1,7 @@
 
 import { GoogleGenAI, GenerateContentResponse, Type } from "@google/genai";
-import { ARCHETYPES } from '@/constants';
-import type { UserPreferences } from '@/types';
+import { ARCHETYPES } from '../constants';
+import type { UserPreferences } from '../types';
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || ""});
 

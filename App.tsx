@@ -10,23 +10,61 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import type { ArchetypeResult, UserPreferences } from '@/types';
 import NotificationService from './services/notificationService';
 
+console.log('📦 Loading GetStarted...');
 import GetStarted from './components/GetStarted';
+console.log('✅ GetStarted loaded');
+
+console.log('📦 Loading TasteQuiz...');
 import TasteQuiz from './components/TasteQuiz';
+console.log('✅ TasteQuiz loaded');
+
+console.log('📦 Loading SignUp...');
 import SignUp from './components/SignUp';
+console.log('✅ SignUp loaded');
+
+console.log('📦 Loading Login...');
 import Login from './components/Login';
+console.log('✅ Login loaded');
+
+console.log('📦 Loading CommunityChat...');
 import CommunityChat from './components/CommunityChat';
+console.log('✅ CommunityChat loaded');
+
+console.log('📦 Loading ArchetypeReveal...');
 import ArchetypeReveal from './components/ArchetypeReveal';
+console.log('✅ ArchetypeReveal loaded');
+
+console.log('📦 Loading Dashboard...');
 import Dashboard from './components/Dashboard';
+console.log('✅ Dashboard loaded');
+
+console.log('📦 Loading Explore...');
 import Explore from './components/Explore';
+console.log('✅ Explore loaded');
+
+console.log('📦 Loading Community...');
 import Community from './components/Community';
+console.log('✅ Community loaded');
+
+console.log('📦 Loading StepOutsideBubble...');
 import StepOutsideBubble from './components/StepOutsideBubble';
+console.log('✅ StepOutsideBubble loaded');
+
+console.log('📦 Loading Blend...');
 import Blend from './components/Blend';
+console.log('✅ Blend loaded');
+
+console.log('📦 Loading Collections...');
 import Collections from './components/Collections';
+console.log('✅ Collections loaded');
+
+console.log('📦 Loading Friends...');
 import Friends from './components/Friends';
+console.log('✅ Friends loaded');
 
 import ProfileDrawer from './components/ProfileDrawer';
 
-import { ARCHETYPES, CATEGORY_ICONS } from '@/constants';
+import { ARCHETYPES, CATEGORY_ICONS } from './constants';
 import { UserCircleIcon, SunIcon, MoonIcon } from 'react-native-heroicons/outline';
 import { SparklesIcon } from 'react-native-heroicons/solid';
 
@@ -325,20 +363,29 @@ function App() {
   useEffect(() => {
     // Check if user is logged in when app starts
     const checkLoginStatus = async () => {
+      console.log('🚀 App initialization started');
       try {
+        console.log('📱 Checking AsyncStorage readiness...');
         const firstTime = await SessionManager.isFirstTime();
+        console.log('✅ AsyncStorage ready, firstTime:', firstTime);
         setIsFirstTime(firstTime);
        
+        console.log('🔍 Getting user session...');
         const userSession = await SessionManager.getSession();
+        console.log('📋 Session data:', userSession ? 'Found' : 'None');
+        
         if (userSession && userSession.loginTime) {
+          console.log('🔐 Restoring user session...');
           setIsLoggedIn(true);
-          console.log('Restoring session:', userSession); // Debug log
+          
           // Restore archetype and preferences from session
           if (userSession.archetype) {
+            console.log('🎭 Restoring archetype:', userSession.archetype.name);
             // Ensure archetype has an icon
             let archetype = userSession.archetype;
             if (!archetype.icon) {
-              const { ARCHETYPES } = require('@/constants');
+              console.log('🔧 Fixing missing archetype icon...');
+              const { ARCHETYPES } = require('./constants');
               const matchingArchetype = Object.values(ARCHETYPES).find(
                 arch => arch.name === archetype.name
               );
@@ -355,6 +402,7 @@ function App() {
             });
           }
           if (userSession.preferences) {
+            console.log('⚙️ Restoring preferences');
             setPreferences(userSession.preferences);
           }
         }
@@ -363,13 +411,16 @@ function App() {
         try {
           console.log('🔥 Initializing Firebase messaging...');
           // NotificationService is already initialized in its constructor
+          console.log('✅ Firebase messaging initialized');
         } catch (error) {
           console.log('❌ Firebase messaging initialization failed:', error);
         }
         
       } catch (error) {
-        console.log('Error checking login status:', error);
+        console.log('❌ CRITICAL: App initialization failed:', error);
+        console.log('❌ Error details:', error.message, error.stack);
       } finally {
+        console.log('✅ App initialization complete, setting loading to false');
         setIsLoading(false);
       }
     };
@@ -402,6 +453,7 @@ function App() {
   }, [darkMode]);
 
   if (isLoading) {
+    console.log('📱 Showing loading screen');
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: darkMode ? '#0f172a' : '#f8fafc' }}>
         <ActivityIndicator size="large" color="#6C63FF" />
@@ -409,28 +461,44 @@ function App() {
     );
   }
 
-  return (
-    <AppContext.Provider value={contextValue}>
-      <NavigationContainer theme={navTheme}>
-        <RootStack.Navigator
-          initialRouteName={isLoggedIn ? "MainTabs" : (isFirstTime ? "GetStarted" : "Login")}
-          screenOptions={{
-            headerShown: false,
-            cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
-          }}
-        >
-          <RootStack.Screen name="GetStarted" component={GetStarted} />
-          <RootStack.Screen name="TasteQuiz" component={TasteQuiz} />
-          <RootStack.Screen name="ArchetypeReveal" component={ArchetypeReveal} />
-          <RootStack.Screen name="SignUp" component={SignUp} />
-          <RootStack.Screen name="Login" component={Login} />
-          <RootStack.Screen name="MainTabs" component={MainTabs} />
-          <RootStack.Screen name="Collections" component={Collections} />
-          <RootStack.Screen name="Friends" component={Friends} />
-        </RootStack.Navigator>
-      </NavigationContainer>
-    </AppContext.Provider>
-  );
+  console.log('🧭 Setting up navigation, isLoggedIn:', isLoggedIn, 'isFirstTime:', isFirstTime);
+  const initialRoute = isLoggedIn ? "MainTabs" : (isFirstTime ? "GetStarted" : "Login");
+  console.log('🧭 Initial route will be:', initialRoute);
+
+  try {
+    console.log('🎨 Creating AppContext.Provider');
+    return (
+      <AppContext.Provider value={contextValue}>
+        {console.log('🧭 Creating NavigationContainer')}
+        <NavigationContainer theme={navTheme}>
+          {console.log('📱 Creating RootStack.Navigator')}
+          <RootStack.Navigator
+            initialRouteName={initialRoute}
+            screenOptions={{
+              headerShown: false,
+              cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+            }}
+          >
+            <RootStack.Screen name="GetStarted" component={GetStarted} />
+            <RootStack.Screen name="TasteQuiz" component={TasteQuiz} />
+            <RootStack.Screen name="ArchetypeReveal" component={ArchetypeReveal} />
+            <RootStack.Screen name="SignUp" component={SignUp} />
+            <RootStack.Screen name="Login" component={Login} />
+            <RootStack.Screen name="MainTabs" component={MainTabs} />
+            <RootStack.Screen name="Collections" component={Collections} />
+            <RootStack.Screen name="Friends" component={Friends} />
+          </RootStack.Navigator>
+        </NavigationContainer>
+      </AppContext.Provider>
+    );
+  } catch (error) {
+    console.log('❌ CRITICAL: Navigation setup failed:', error);
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#f8fafc' }}>
+        <Text>App Error: {error.message}</Text>
+      </View>
+    );
+  }
 }
  
 export default App;

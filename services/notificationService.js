@@ -8,23 +8,27 @@ class NotificationService {
   }
 
   async initialize() {
+    console.log('🔔 Starting notification service initialization...');
     try {
-      await this.requestPermission();
-      this.setupNotificationHandlers();
+      // Skip permission requests to avoid first launch issues
+      console.log('⏭️ Skipping notification permissions for now');
       
-      // Get FCM token for debugging
-      this.fcmToken = await messaging().getToken();
-      console.log('🔥 FCM Token:', this.fcmToken);
-      console.log('🔥 Firebase notification service ready');
+      console.log('🔧 Setting up notification handlers...');
+      this.setupNotificationHandlers();
+      console.log('✅ Handlers set up');
+      
+      console.log('✅ Firebase notification service ready (without permissions)');
     } catch (error) {
-      console.log('❌ Firebase setup failed:', error);
+      console.log('❌ Firebase notification setup failed:', error);
     }
   }
 
   async requestPermission() {
+    console.log('📱 Platform:', Platform.OS);
     // Request Android notification permission for Android 13+
     if (Platform.OS === 'android') {
       try {
+        console.log('🤖 Requesting Android notification permission...');
         const granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
           {
@@ -35,12 +39,13 @@ class NotificationService {
             buttonPositive: 'OK',
           }
         );
-        console.log('📱 Android notification permission:', granted);
+        console.log('📱 Android notification permission result:', granted);
       } catch (error) {
         console.log('❌ Android permission error:', error);
       }
     }
     
+    console.log('🔥 Requesting Firebase messaging permission...');
     const authStatus = await messaging().requestPermission();
     const enabled =
       authStatus === messaging.AuthorizationStatus.AUTHORIZED ||
@@ -49,7 +54,7 @@ class NotificationService {
     if (enabled) {
       console.log('✅ Firebase authorization status:', authStatus);
     } else {
-      console.log('❌ Notification permission denied');
+      console.log('❌ Notification permission denied, status:', authStatus);
     }
     
     return enabled;

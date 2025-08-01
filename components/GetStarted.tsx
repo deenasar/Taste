@@ -2,16 +2,19 @@ import React, { useState, useRef, useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Animated, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import type { StackNavigationProp } from '@react-navigation/stack';
-import type { RootStackParamList } from '@/App';
-import { AppContext } from '@/App';
+import type { RootStackParamList } from '../App';
+import { AppContext } from '../App';
 import LinearGradient from 'react-native-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
 const GetStarted: React.FC = () => {
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const { darkMode } = useContext(AppContext)!;
-  const styles = createStyles(darkMode);
+  console.log('🎆 GetStarted component rendering');
+  try {
+    const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+    const { darkMode } = useContext(AppContext)!;
+    const styles = createStyles(darkMode);
+    console.log('✅ GetStarted hooks initialized successfully');
   const [videoEnded, setVideoEnded] = useState(false);
   
   const taglineAnim = useRef(new Animated.Value(0)).current;
@@ -20,31 +23,38 @@ const GetStarted: React.FC = () => {
   const footerAnim = useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
-    // Start animations immediately
-    Animated.sequence([
-      Animated.timing(taglineAnim, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-      }),
-      Animated.timing(buttonAnim, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(loginAnim, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }),
-      Animated.timing(footerAnim, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    console.log('🎨 Starting GetStarted animations');
+    try {
+      // Start animations immediately
+      Animated.sequence([
+        Animated.timing(taglineAnim, {
+          toValue: 1,
+          duration: 800,
+          useNativeDriver: true,
+        }),
+        Animated.timing(buttonAnim, {
+          toValue: 1,
+          duration: 600,
+          useNativeDriver: true,
+        }),
+        Animated.timing(loginAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(footerAnim, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+      ]).start();
+      console.log('✅ GetStarted animations started');
+    } catch (error) {
+      console.log('❌ GetStarted animation error:', error);
+    }
   }, []);
 
+  console.log('📄 GetStarted rendering JSX');
   return (
     <View style={styles.container}>
       {/* Top Half - Image */}
@@ -141,6 +151,14 @@ const GetStarted: React.FC = () => {
       </View>
     </View>
   );
+  } catch (error) {
+    console.log('❌ CRITICAL: GetStarted component crashed:', error);
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffffff' }}>
+        <Text>GetStarted Error: {error.message}</Text>
+      </View>
+    );
+  }
 };
 
 const createStyles = (darkMode: boolean) => StyleSheet.create({

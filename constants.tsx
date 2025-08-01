@@ -1,7 +1,7 @@
 
 import React from 'react';
 import Svg, { Path } from 'react-native-svg';
-import type { Archetype, QuizQuestion } from '@/types';
+import type { Archetype, QuizQuestion } from './types';
 import { HomeIcon, MagnifyingGlassIcon, UserGroupIcon, UserCircleIcon } from 'react-native-heroicons/outline';
 
 

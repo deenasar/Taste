@@ -34,8 +34,8 @@ class MainApplication : Application(), ReactApplication {
   override fun onCreate() {
     super.onCreate()
     
-    // Create notification channel for Android 8.0+
-    NotificationHelper.createNotificationChannel(this)
+    // Notification channel creation disabled to prevent first launch crashes
+    // NotificationHelper.createNotificationChannel(this)
     
     loadReactNative(this)
   }

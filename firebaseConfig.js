@@ -1,6 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
+console.log('🔥 Initializing Firebase config...');
+
 // Firebase configuration using environment variables
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY || "AIzaSyDxdAGoIB2m4oWgdpwo599VJAyv_AnAXn8",
@@ -11,7 +13,19 @@ const firebaseConfig = {
   appId: process.env.FIREBASE_APP_ID || "1:362697450475:web:a37f4f08b9a92016feafae"
 };
 
-const app = initializeApp(firebaseConfig);
-export const FIREBASE_DB = getFirestore(app);
-export { firebaseConfig };
+console.log('🔥 Firebase config loaded, initializing app...');
+let app;
+let FIREBASE_DB;
+
+try {
+  app = initializeApp(firebaseConfig);
+  console.log('✅ Firebase app initialized');
+  FIREBASE_DB = getFirestore(app);
+  console.log('✅ Firestore initialized');
+} catch (error) {
+  console.log('❌ Firebase initialization failed:', error);
+  throw error;
+}
+
+export { FIREBASE_DB, firebaseConfig };
 
