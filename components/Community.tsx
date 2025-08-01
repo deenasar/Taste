@@ -14,14 +14,14 @@ import {
 } from 'react-native';
 import { collection, addDoc, onSnapshot, query, orderBy, where, getDocs, doc, getDoc, setDoc, updateDoc, increment } from 'firebase/firestore';
 import { FIREBASE_DB } from '../firebaseConfig'; // Make sure this path is correct
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { generateCommunityRecommendations } from '@/services/communityService';
 import LinearGradient from 'react-native-linear-gradient';
 import { HeartIcon, TrophyIcon, UserGroupIcon, SparklesIcon, ChevronDownIcon, UserPlusIcon } from 'react-native-heroicons/solid';
 import { SessionManager } from './SessionManager';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { CommunityStackParamList } from '@/App';
+import { CommunityStackParamList } from '../App';
 import NotificationService from '../services/notificationService';
 
 

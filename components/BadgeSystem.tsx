@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Modal, Animated } from 'react-native';
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { SessionManager } from './SessionManager';
 import { collection, doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { FIREBASE_DB } from '../firebaseConfig';

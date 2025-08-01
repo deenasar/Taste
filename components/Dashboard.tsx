@@ -2,12 +2,10 @@
 import React, { useContext, useState, useEffect, useMemo, useRef } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image, TextInput, TouchableOpacity, ActivityIndicator, Modal } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AppContext } from '@/App';
-import MirrorOfYou from '@/components/MirrorOfYou';
-import DailyPuzzleCard from '@/components/DailyPuzzleCard';
-import DailyTeaserCard from '@/components/DailyTeaserCard';
-import CompactTastePuzzle from '@/components/CompactTastePuzzle';
-import TinderSwipeDeck from '@/components/TinderSwipeDeck';
+import { AppContext } from '../App';
+import MirrorOfYou from '../components/MirrorOfYou';
+import DailyTeaserCard from '../components/DailyTeaserCard';
+import TinderSwipeDeck from '../components/TinderSwipeDeck';
 import { FireIcon } from 'react-native-heroicons/solid';
 import LinearGradient from 'react-native-linear-gradient';
 import BadgeDashboard from './BadgeDashboard';

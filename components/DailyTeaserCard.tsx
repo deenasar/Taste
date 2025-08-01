@@ -6,7 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import { DAILY_TEASER_LINES } from '@/constants';
+import { DAILY_TEASER_LINES } from '../constants';
 
 interface DailyTeaserCardProps {
   themeColors: [string, string];

@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { BadgeSystem } from './BadgeSystem';
 import { TrophyIcon } from 'react-native-heroicons/solid';
 import LinearGradient from 'react-native-linear-gradient';

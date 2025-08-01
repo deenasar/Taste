@@ -8,7 +8,7 @@ import {
   Image,
   ActivityIndicator
 } from 'react-native';
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { SessionManager } from './SessionManager';
 import { collection, query, where, getDocs, orderBy } from 'firebase/firestore';
 import { FIREBASE_DB } from '../firebaseConfig';

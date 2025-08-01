@@ -19,7 +19,7 @@ import { BackHandler } from 'react-native';
 import { PaperAirplaneIcon, ChevronLeftIcon } from 'react-native-heroicons/solid';
 import { collection, addDoc, onSnapshot, query, orderBy } from 'firebase/firestore';
 import { FIREBASE_DB } from '../firebaseConfig';
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { SessionManager } from './SessionManager';
 
 import { AppState } from 'react-native';

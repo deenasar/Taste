@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, createContext, useMemo, useEffect, useContext } from 'react';
 import { StatusBar, View, ActivityIndicator, Text, Image, TouchableOpacity, Animated } from 'react-native';
 import { SessionManager } from './components/SessionManager';

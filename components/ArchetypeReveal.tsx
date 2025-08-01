@@ -11,7 +11,7 @@ import {
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import LinearGradient from 'react-native-linear-gradient';
-import { AppContext } from '@/App';
+import { AppContext } from '../App';
 import { HeartIcon } from 'react-native-heroicons/solid';
 import { SessionManager } from './SessionManager';
 import { FIREBASE_DB } from '../firebaseConfig';
