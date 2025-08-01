@@ -101,8 +101,9 @@ The Archetype Dashboard is the personalized starting point of the user’s exper
 6. **Item Detail View**  
    `/get-item-details` → Metadata (summary, cast, genre, platform, release year).
 
-🚧 Why Explore Recommendations Take Time
-   The Explore page may take some time to display recommendations because, for each user preference, the system generates example items using Gemini, fetches entity IDs, retrieves related recommendations, and then creates a personalized title and description. This multi-step process ensures high-quality and contextually relevant results, but can introduce delays when multiple preferences are processed.
+🌀 Explore Page Processing Delay
+         
+         The Explore page may take some time to display recommendations because, for each user preference, the system generates example items using Gemini, fetches entity IDs, retrieves related recommendations, and then creates a personalized title and description. This multi-step process ensures high-quality and contextually relevant results, but can introduce delays when multiple preferences are processed.
 ---
 
 ## 📅 Daily Recommendation Page
