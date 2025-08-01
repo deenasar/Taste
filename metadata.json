@@ -1,0 +1,6 @@
+{
+  "name": "TPA: Taste Personality Archetypes",
+  "description": "A React Native mobile application that assigns users to one of 10 taste-based cultural archetypes based on their preferences in music, movies, books, food, and travel, using the Gemini API to generate personalized summaries.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}

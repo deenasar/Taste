@@ -1,0 +1,1 @@
+// Test component - can be removed in production

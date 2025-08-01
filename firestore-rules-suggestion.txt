@@ -1,0 +1,35 @@
+// Suggested Firestore Security Rules for Community Recommendations Cache
+// Add these rules to your Firestore console to prevent cache overwrites
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Community recommendations cache - prevent overwriting existing weekly docs
+    match /community_recommendations/{docId} {
+      allow read: if true; // Anyone can read cached recommendations
+      allow create: if true; // Allow creation of new cache entries
+      allow update: if false; // Prevent updates to existing cache
+      allow delete: if false; // Prevent deletion of cache entries
+    }
+    
+    // Other existing rules...
+    match /community/{document=**} {
+      allow read, write: if true;
+    }
+    
+    match /users/{document=**} {
+      allow read, write: if true;
+    }
+    
+    match /friends/{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
+// Key Benefits:
+// 1. Prevents race conditions - first write wins
+// 2. Ensures cache consistency across all users
+// 3. Allows reading cached data for all users
+// 4. Prevents accidental cache corruption
